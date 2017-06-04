@@ -10,11 +10,11 @@ namespace qh
         //ctor
         string();
         string(const char* s);
-        string(const char* s, size_t len);
+        string(const char s, size_t len);
         string(const string& rhs);
 
         string& operator=(const string& rhs);
-
+		
         //dtor
         ~string();
 
@@ -24,8 +24,8 @@ namespace qh
         const char* c_str() const;
 
         // set & get
-        char* operator[](size_t index);
-
+        char& operator[](size_t index);
+		friend bool operator==(const string& a, const string& b);
     private:
         char*  data_;
         size_t len_;
