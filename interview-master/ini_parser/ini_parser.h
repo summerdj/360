@@ -1,6 +1,8 @@
 #ifndef QIHOO_INI_PARSER_H_
 #define QIHOO_INI_PARSER_H_
-
+#include <vector>
+#include <map>
+#include <iostream>
 #include <string>
 
 namespace qh
@@ -8,9 +10,16 @@ namespace qh
     class INIParser
     {
     public:
-        INIParser();
-        ~INIParser();
-
+        INIParser ()
+		{
+//			std::string s;
+//			data_[""] = s;
+		}
+        ~INIParser()
+		{
+			
+		}
+		void Split(const std::string& str, std::vector<std::string>& results, const std::string& line_seperator);
         //! \brief 解析一个磁盘上的INI文件
         //! \param[in] - const std::string & ini_file_path
         //! \return - bool
@@ -37,6 +46,8 @@ namespace qh
         const std::string& Get(const std::string& section, const std::string& key, bool* found);
 
     private:
+		std::map<std::string,std::string> data_;
+		
     };
 }
 
