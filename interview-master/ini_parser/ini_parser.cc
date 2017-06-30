@@ -20,6 +20,29 @@ namespace qh
 			lastpos = pos + 1;
 		}
 	}
+	void StringSplit(const std::string& source,
+			 const std::string& delim,
+			 std::vector<std::string&> result){
+		result.clean();
+		if(source.empty() || delim.empty()){
+			return;	
+		}
+		size_t delim_size = delim.size();
+		size_t source_size = source.size();
+		size_t i = 0;
+		while(i < source.size){
+			int pos = source.find(delim);
+			if(pos >=0){
+				std::string tmp = source.substr(i, pos - i);
+				result.push_back(tmp);
+			}else{
+				std::string tmp = source.substr(i, source_size - i);
+				result.push_back(tmp);
+				pos = source_size;
+			}
+			i = pos +delim_size;
+		}
+	}
 	//line_seperator  \n    key_value_seperaotr   =    data_  map<string ,string>
 	bool INIParser::Parse(const char* ini_data, size_t ini_data_len, const std::string& line_seperator, const std::string& key_value_seperator)
 	{
